@@ -1,37 +1,62 @@
-function getRandomNum() {
-    return Math.floor(Math.random() * 101);
-}
+let randomNum = Math.floor(Math.random() * 101);
+let guesses = 10;
+let guessCount = document.querySelector("#guessCount");
+let result = document.querySelector(".result");
+let clue = document.querySelector(".clue");
+let guessButton = document.querySelector(".guessButton");
+let guessInput = document.querySelector(".guessInput");
+let playAgainButton;
 
-let randomNum = getRandomNum();
-let userNum = 0;
-let guesses = 15;
+function guessNum() { 
+    const userNum = Number(guessInput.value);
+    guesses--;
 
-function guessNum(randomNum, userNum) { 
-
-    while (guesses > 0) {    
-        userNum = parseInt(prompt("Guess the number between 1 and 100:", ""), 10);
-
+    if (userNum === randomNum) {
+        result.textContent = `Yes, it was ${randomNum}! Well done!`;
+        result.style.color = "green";
+        clue.textContent = "";
+        gameOver();
+    } else if (guesses === 0) {
+        guessCount.textContent = "0";
+        result.textContent = `Aw, you had to guess ${randomNum}...Better luck next time.`;
+        clue.textContent = "";
+        gameOver();
+    } else {
+        guessCount.textContent = `${guesses}`;
+        result.textContent = "That's wrong."
+        result.style.color = "red";
         if (userNum > randomNum) {
-        guesses--;
-        let result = "Too high! Try again";
-        result += "\n";
-        result += `You have ${guesses} tries left`
-        console.log(result);
-        } else if (userNum < randomNum) {
-        guesses--;
-        let result = "Too low! Try again";
-        result += "\n";
-        result += `You have ${guesses} tries left`
-        console.log(result);
-        } else if (userNum === randomNum) {
-        console.log(`Yes, it's ${randomNum}! \nWell done!`);
-        }
-    }   
-
-    if (guesses == 0) {
-        console.log(`Aw, the answer was ${randomNum}. Better luck next time.`)
+            clue.textContent = `${userNum} is too high, you should try something else...`;
+            } else if (userNum < randomNum) {
+            clue.textContent = `${userNum} is too low! Come on, a bit higher!`;
+            }
     }
-
+    guessInput.value = "";
+    guessInput.focus();
 }
 
-console.log(guessNum(randomNum, userNum));
+guessButton.addEventListener('click', guessNum);
+
+function gameOver() {
+    guessInput.disabled = true;
+    guessButton.disabled = true;
+    playAgainButton = document.createElement("button");
+    playAgainButton.textContent = "Play again!";
+    document.body.appendChild(playAgainButton);
+    playAgainButton.addEventListener("click", playAgain);
+}
+
+function playAgain() {
+    guesses = 10;
+    guessCount.textContent = "10";
+    result.textContent = "";
+    clue.textContent = "";
+    playAgainButton.parentNode.removeChild(playAgainButton);
+    guessInput.disabled = false;
+    guessButton.disabled = false;
+    guessInput.value = "";
+    guessInput.focus();
+    randomNum = Math.floor(Math.random() * 101);
+}
+
+

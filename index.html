@@ -5,8 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Guess the number!</h1>
+    <section class="game">
+        <div class="form">
+        <p>Can you guess the number between 0 and 100?</p>
+        <p>I will let you try 10 times.</p>
+            <label for="guessInput">Enter your guess: </label>
+            <input type="text" id="guessInput" class="guessInput">
+            <input type="submit" value="Submit" class="guessButton">
+            <p>Guesses left: <span id="guessCount">10</span></p>
+            <p class="result"></p>
+            <p class="clue"></p>
+        </div>
+    </section>
+    <!-- TODO add portfolio later -->
+    <!-- <footer>Created by <a href="portfolio" target="_blank">Cédric</a></footer> -->
     <script src="script.js"></script>
 </body>
 </html>
