@@ -6,6 +6,7 @@ let clue = document.querySelector(".clue");
 let guessButton = document.querySelector(".guessButton");
 let guessInput = document.querySelector(".guessInput");
 let playAgainButton;
+let form = document.querySelector(".form");
 
 function guessNum() { 
     const userNum = Number(guessInput.value);
@@ -42,7 +43,7 @@ function gameOver() {
     guessButton.disabled = true;
     playAgainButton = document.createElement("button");
     playAgainButton.textContent = "Play again!";
-    document.body.appendChild(playAgainButton);
+    form.appendChild(playAgainButton);
     playAgainButton.addEventListener("click", playAgain);
 }
 
