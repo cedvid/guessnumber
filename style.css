@@ -22,7 +22,13 @@ h1 {
 .guesses {
     color: green;
 }
+#guessInput {
+    height: 1.5em;
+}
 .guessButton, button {
     background-color: #3a5b8d;
     color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.5em;
 }
